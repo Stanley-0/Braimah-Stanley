@@ -1,9 +1,522 @@
-<html>
-<head>
-    <title>Stanley Braimah</title>
-</head>
-<body>
-    <h1>Welcome to Stanley Braimah's Page</h1>
-    <p>This is an example of a basic HTML page.</p>
-</body>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Junior Pentester & Vibe Coder</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Orbitron:wght@400;700;900&family=Syne:wght@400;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --bg-dark: #0a0e27;
+        --bg-darker: #05070f;
+        --neon-cyan: #00ffff;
+        --neon-magenta: #ff00ff;
+        --neon-purple: #aa00ff;
+        --text-primary: #e0e0e0;
+        --text-secondary: #a0a0a0;
+        --accent-glow: rgba(0, 255, 255, 0.3);
+      }
+
+      body {
+        background: linear-gradient(
+          135deg,
+          var(--bg-dark) 0%,
+          var(--bg-darker) 100%
+        );
+        color: var(--text-primary);
+        font-family: "Space Mono", monospace;
+        line-height: 1.6;
+        overflow-x: hidden;
+        position: relative;
+      }
+
+      /* Animated background grid */
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image:
+          linear-gradient(0deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+        background-size: 50px 50px;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .container {
+        position: relative;
+        z-index: 1;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 60px 40px;
+      }
+
+      /* Header */
+      header {
+        margin-bottom: 80px;
+        position: relative;
+      }
+
+      .header-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        margin-bottom: 40px;
+        border-bottom: 2px solid rgba(0, 255, 255, 0.2);
+        padding-bottom: 20px;
+      }
+
+      h1 {
+        font-family: "Orbitron", sans-serif;
+        font-size: 2.8em;
+        font-weight: 900;
+        letter-spacing: 3px;
+        background: linear-gradient(
+          90deg,
+          var(--neon-cyan),
+          var(--neon-magenta)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: glitch 3s infinite;
+      }
+
+      @keyframes glitch {
+        0%,
+        100% {
+          text-shadow:
+            2px 2px var(--neon-magenta),
+            -2px -2px var(--neon-cyan);
+        }
+        50% {
+          text-shadow:
+            -2px 2px var(--neon-cyan),
+            2px -2px var(--neon-magenta);
+        }
+      }
+
+      .tagline {
+        font-size: 1.1em;
+        color: var(--neon-cyan);
+        font-weight: bold;
+        letter-spacing: 2px;
+        animation: fadeInUp 1s ease 0.3s backwards;
+      }
+
+      .status-badge {
+        display: inline-block;
+        padding: 8px 16px;
+        border: 2px solid var(--neon-magenta);
+        color: var(--neon-magenta);
+        font-size: 0.85em;
+        letter-spacing: 1px;
+        background: rgba(255, 0, 255, 0.1);
+        animation: fadeInUp 1s ease 0.5s backwards;
+      }
+
+      /* Main Grid */
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        margin-bottom: 60px;
+        align-items: start;
+      }
+
+      /* Section Cards */
+      .card {
+        background: rgba(10, 14, 39, 0.6);
+        border: 2px solid rgba(0, 255, 255, 0.2);
+        padding: 35px;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(0, 255, 255, 0.1),
+          transparent
+        );
+        transition: left 0.5s ease;
+      }
+
+      .card:hover::before {
+        left: 100%;
+      }
+
+      .card:hover {
+        border-color: var(--neon-cyan);
+        box-shadow:
+          0 0 20px rgba(0, 255, 255, 0.3),
+          inset 0 0 20px rgba(0, 255, 255, 0.05);
+      }
+
+      .card h2 {
+        font-family: "Orbitron", sans-serif;
+        font-size: 1.6em;
+        letter-spacing: 2px;
+        color: var(--neon-cyan);
+        margin-bottom: 20px;
+        text-transform: uppercase;
+      }
+
+      .card-content {
+        position: relative;
+        z-index: 2;
+      }
+
+      /* Skills Section */
+      .skills-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .skill-tag {
+        background: rgba(0, 255, 255, 0.1);
+        border: 1px solid var(--neon-cyan);
+        padding: 10px 15px;
+        font-size: 0.9em;
+        color: var(--neon-cyan);
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+      }
+
+      .skill-tag:hover {
+        background: rgba(0, 255, 255, 0.3);
+        transform: translateX(5px);
+        box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+      }
+
+      /* Projects Section */
+      .projects {
+        grid-column: 1 / -1;
+      }
+
+      .project-item {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-bottom: 25px;
+        padding-bottom: 25px;
+        border-bottom: 1px solid rgba(255, 0, 255, 0.2);
+      }
+
+      .project-item:last-child {
+        border-bottom: none;
+      }
+
+      .project-title {
+        font-family: "Orbitron", sans-serif;
+        color: var(--neon-magenta);
+        font-size: 1.2em;
+        margin-bottom: 8px;
+        letter-spacing: 1px;
+      }
+
+      .project-desc {
+        color: var(--text-secondary);
+        font-size: 0.95em;
+        margin-bottom: 10px;
+      }
+
+      .project-tags {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .tag {
+        font-size: 0.8em;
+        padding: 5px 10px;
+        background: rgba(170, 0, 255, 0.2);
+        border: 1px solid var(--neon-purple);
+        color: var(--neon-purple);
+        letter-spacing: 0.5px;
+      }
+
+      /* Footer */
+      footer {
+        grid-column: 1 / -1;
+        border-top: 2px solid rgba(0, 255, 255, 0.2);
+        padding-top: 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 30px;
+      }
+
+      .social-link {
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-size: 0.95em;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      .social-link:hover {
+        color: var(--neon-cyan);
+      }
+
+      .social-link::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--neon-cyan);
+        transition: width 0.3s ease;
+      }
+
+      .social-link:hover::after {
+        width: 100%;
+      }
+
+      /* Animations */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .card {
+        animation: fadeInUp 0.8s ease backwards;
+      }
+
+      .card:nth-child(1) {
+        animation-delay: 0.1s;
+      }
+      .card:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .card:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+      .card:nth-child(4) {
+        animation-delay: 0.4s;
+      }
+
+      /* Code snippet styling */
+      code {
+        background: rgba(0, 255, 255, 0.1);
+        padding: 2px 6px;
+        color: var(--neon-cyan);
+        font-size: 0.9em;
+        border-radius: 3px;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .container {
+          padding: 40px 20px;
+        }
+
+        .grid {
+          grid-template-columns: 1fr;
+        }
+
+        h1 {
+          font-size: 2em;
+        }
+
+        .project-item {
+          grid-template-columns: 1fr;
+        }
+
+        footer {
+          flex-direction: column;
+          gap: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="header-top">
+          <h1>BRAIMAH STANLEY</h1>
+          <span class="status-badge">JUNIOR_PENTESTER</span>
+        </div>
+        <p class="tagline">> Creative Security Researcher & Full-Stack Coder</p>
+      </header>
+
+      <div class="grid">
+        <!-- About Card -->
+        <div class="card">
+          <h2>// ABOUT</h2>
+          <div class="card-content">
+            <p>
+              Security-focused developer exploring the intersection of ethical
+              hacking and creative coding. Passionate about finding
+              vulnerabilities, building solutions, and writing code with style.
+            </p>
+            <p style="margin-top: 15px; color: var(--text-secondary)">
+              Specialized in penetration testing methodologies, network
+              security, and full-stack application development.
+            </p>
+          </div>
+        </div>
+
+        <!-- Skills Card -->
+        <div class="card">
+          <h2>// SKILLS</h2>
+          <div class="card-content">
+            <div class="skills-grid">
+              <div class="skill-tag">Penetration Testing</div>
+              <div class="skill-tag">Network Security</div>
+              <div class="skill-tag">JavaScript/Python</div>
+              <div class="skill-tag">Web Security</div>
+              <div class="skill-tag">Vulnerability Assessment</div>
+              <div class="skill-tag">Full-Stack Dev</div>
+              <div class="skill-tag">Linux/Unix</div>
+              <div class="skill-tag">API Security</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Certifications Card -->
+        <div class="card">
+          <h2>// CERTS</h2>
+          <div class="card-content">
+            <p style="margin-bottom: 10px">📌 CompTIA Security+(In Progress)</p>
+            <p style="margin-bottom: 10px">📌 CEH (In Progress)</p>
+            <p style="margin-bottom: 10px">📌 OSCP (Target Q4 2026)</p>
+            <p
+              style="
+                color: var(--text-secondary);
+                margin-top: 15px;
+                font-size: 0.9em;
+              "
+            >
+              Currently pursuing advanced certifications in ethical hacking and
+              penetration testing.
+            </p>
+          </div>
+        </div>
+
+        <!-- Tools Card -->
+        <div class="card">
+          <h2>// ARSENAL</h2>
+          <div class="card-content">
+            <p style="margin-bottom: 10px">
+              <code>Burp Suite</code> | <code>Metasploit</code> |
+              <code>OWASP</code>
+            </p>
+            <p style="margin-bottom: 10px">
+              <code>Wireshark</code> | <code>Nmap</code> |
+              <code>Kali Linux</code>
+            </p>
+            <p>
+              <code>Docker</code> | <code>GitHub</code> | <code>REST APIs</code>
+            </p>
+          </div>
+        </div>
+
+        <!-- Projects Section -->
+        <div class="card projects">
+          <h2>// PROJECTS</h2>
+          <div class="card-content">
+            <div class="project-item">
+              <div>
+                <p class="project-title">Web Vulnerability Scanner</p>
+                <p class="project-desc">
+                  Automated tool for identifying OWASP Top 10 vulnerabilities in
+                  web applications.
+                </p>
+              </div>
+              <div class="project-tags">
+                <span class="tag">Python</span>
+                <span class="tag">Security</span>
+                <span class="tag">Automation</span>
+              </div>
+            </div>
+
+            <div class="project-item">
+              <div>
+                <p class="project-title">Secure Chat Application</p>
+                <p class="project-desc">
+                  Full-stack encrypted messaging platform with JWT
+                  authentication and data encryption.
+                </p>
+              </div>
+              <div class="project-tags">
+                <span class="tag">JavaScript</span>
+                <span class="tag">React</span>
+                <span class="tag">Node.js</span>
+              </div>
+            </div>
+
+            <div class="project-item">
+              <div>
+                <p class="project-title">Penetration Testing Lab</p>
+                <p class="project-desc">
+                  Docker-based vulnerable environment for practicing
+                  exploitation and defensive techniques.
+                </p>
+              </div>
+              <div class="project-tags">
+                <span class="tag">Docker</span>
+                <span class="tag">Linux</span>
+                <span class="tag">CTF</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="social-links">
+          <a
+            href="/cdn-cgi/l/email-protection#224050434b4f434a5156434c4e475b1262454f434b4e0c414d4f"
+            class="social-link"
+            >CONTACT</a
+          >
+          <a href="https://github.com/Stanley-0" class="social-link">GITHUB</a>
+          <a href="https://linkedin.com/in/yourusername" class="social-link"
+            >LINKEDIN</a
+          >
+          <a href="https://twitter.com/yourusername" class="social-link"
+            >TWITTER</a
+          >
+        </div>
+        <p style="font-size: 0.85em; color: var(--text-secondary)">
+          © 2026 Braimah Stanley | Security & Code
+        </p>
+      </footer>
+    </div>
+  </body>
 </html>
